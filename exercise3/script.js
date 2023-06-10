@@ -7,7 +7,7 @@ const echoUrl = "wss://echo-ws-service.herokuapp.com";
 const geolocationUrl = "https://www.openstreetmap.org/#map=18/";
 
 let geoLink = document.createElement("a");
-geoLink.target = '_blank'
+geoLink.target = "_blank";
 
 let echo = new WebSocket(echoUrl);
 echo.onopen = function () {};
@@ -23,7 +23,15 @@ echo.onerror = function (error) {
   alert("Ошибка сервера");
 };
 
+
+
 submit.addEventListener("click", function () {
+  if (message.value == "Закрыть чат") {
+    chat.innerHTML = '';
+    return echo.onclose = function(){
+      alert('finish')
+    };
+  }
   chatEmpty.style.display = "none";
   echo.send(message.value);
   let userMessage = document.createElement("p");
